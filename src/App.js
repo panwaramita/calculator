@@ -9,7 +9,11 @@ function App() {
   const [op,setOp]=useState("");
   const [initial,setInitial]=useState(" ");
   const [operatorType,setOperatorType]=useState("");
+  const [perc,setperc]=useState("");
+  const [eq,setEq]=useState("");
   const setInput=(e)=>{
+    if(inputValues.length>=10)return
+{
     if(inputValues.includes(".") && e.target.value===".") return;
     if(initial===" ")
     {
@@ -21,22 +25,32 @@ function App() {
     {
  setinputValues(inputValues+e.target.value);
     }
+    if(perc!=="")
+    {
+      setinputValues("");
+      setinputValues(e.target.value);
+      setperc("");
+    }
+    if(eq!="")
+    {
+      setinputValues("");
+      setinputValues(e.target.value);
+      setEq("");
+    }
     if(op!=="")
     {
       setinputValues(e.target.value);
         setOp("");
-      // alert(inputValues)
-      // if(inputValues==="")
-      // setinputValues(e.target.value);
-      // else
-      //  setinputValues(inputValues+e.target.value);
-    }
+       }
+  }
   }
   const percentage=(e)=>{
+    setperc("1");
     const perValue=String(parseFloat(inputValues)/100);
           setinputValues(perValue);
   }
   const equal=async(e)=>{
+    setEq("1");
     switch (operatorType) {
       case "+":
         const plusValue=String(parseFloat(preValue)+parseFloat(inputValues));
